@@ -1,5 +1,5 @@
 create_go_project() {
-  local module_name="$1"
+  local module_name="${1:-$(basename "$PWD")}"
 
   cat > go.mod <<EOF
 module $module_name
@@ -16,7 +16,7 @@ func main() {
 EOF
 }
 
-create_node_gitignore() {
+create_go_gitignore() {
   cat > .gitignore <<'EOF'
 node_modules/
 dist/

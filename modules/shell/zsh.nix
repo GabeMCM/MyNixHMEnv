@@ -26,11 +26,13 @@
       gp = "git push";
       gl = "git log --oneline --graph --decorate";
 
-	  ns = "nix search nixpkgs";
+      ns = "nix search nixpkgs";
 
-	  buildnix = "nix build .#homeConfigurations.caspgestec.activationPackage";
-	  activenix = "./result/activate && exec zsh";
-	  buildactivenix = "nix build .#homeConfigurations.caspgestec.activationPackage && ./result/activate && exec zsh";
+      buildnix = "nix build .#homeConfigurations.caspgestec.activationPackage";
+      activenix = "./result/activate && exec zsh";
+      buildactivenix = "nix build .#homeConfigurations.caspgestec.activationPackage && ./result/activate && exec zsh";
+      hm = "home-manager switch --flake ~/.config/nix-config#caspgestec && exec zsh";
+      hmbackup = "home-manager switch -b backup --flake ~/.config/nix-config#caspgestec && exec zsh";
     };
 
     autosuggestion.enable = true;
@@ -41,6 +43,17 @@
       setopt AUTO_CD
 
       export PATH="$HOME/.cargo/bin:$PATH"
+
+      gsave() {
+        if [ -z "$1" ]; then
+          echo "Uso: gsave \"mensagem do commit\""
+          return 1
+        fi
+
+        git add .
+        git commit -m "$*"
+        git push
+      }
     '';
   };
 }

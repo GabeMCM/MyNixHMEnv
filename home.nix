@@ -4,13 +4,13 @@
   imports = [
     ./modules/shell/zsh.nix
     ./modules/shell/starship.nix
+    ./modules/shell/tools.nix
 
-    ./modules/cli/tools.nix
-    ./modules/cli/git.nix
-	  ./modules/cli/direnv.nix
-	    
-    ./modules/apps/vscode.nix
-	  ./modules/apps/pkgs.nix
+    ./modules/geral/git.nix
+	  ./modules/geral/direnv.nix
+    ./modules/geral/vscode.nix
+	  ./modules/geral/pkgs.nix
+    ./modules/geral/gh.nix
 
     ./modules/dev-init.nix
   ];
