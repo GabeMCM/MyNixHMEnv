@@ -28,11 +28,11 @@
 
       ns = "nix search nixpkgs";
 
-      buildnix = "nix build .#homeConfigurations.caspgestec.activationPackage";
+      buildnix = "nix build .#homeConfigurations.main.activationPackage";
       activenix = "./result/activate && exec zsh";
-      buildactivenix = "nix build .#homeConfigurations.caspgestec.activationPackage && ./result/activate && exec zsh";
-      hm = "home-manager switch --flake ~/.config/nix-config#caspgestec && exec zsh";
-      hmbackup = "home-manager switch -b backup --flake ~/.config/nix-config#caspgestec && exec zsh";
+      buildactivenix = "nix build .#homeConfigurations.main.activationPackage && ./result/activate && exec zsh";
+      hm = "home-manager switch --flake ~/.config/nix-config#main && exec zsh";
+      hmbackup = "home-manager switch -b backup --flake ~/.config/nix-config#main && exec zsh";
     };
 
     autosuggestion.enable = true;

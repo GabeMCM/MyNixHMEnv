@@ -13,6 +13,8 @@
   outputs = { nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
+      username = "caspgestec";
+      homeDirectory = "/home/${username}";
 
       pkgs = import nixpkgs {
         inherit system;
@@ -23,9 +25,13 @@
       };
     in
     {
-      homeConfigurations.caspgestec =
+      homeConfigurations.main =
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
+
+          extraSpecialArgs = {
+            inherit username homeDirectory;
+          };
 
           modules = [
             ./home.nix

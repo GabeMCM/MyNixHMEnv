@@ -1,4 +1,4 @@
-{ ... }:
+{ username, homeDirectory, ... }:
 
 {
   imports = [
@@ -15,8 +15,8 @@
     ./modules/dev-init.nix
   ];
 
-  home.username = "caspgestec";
-  home.homeDirectory = "/home/caspgestec";
+  home.username = username;
+  home.homeDirectory = homeDirectory;
 
   home.sessionPath = [
     "$HOME/.local/bin"
