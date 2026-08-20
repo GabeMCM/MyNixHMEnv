@@ -10,7 +10,7 @@ to_nix_pkg() {
       echo "pkgs.go"
       ;;
     "Python")
-      echo "pkgs.python"
+      echo "pkgs.python3"
       ;;
     "PostgreSQL")
       echo "pkgs.postgresql"
