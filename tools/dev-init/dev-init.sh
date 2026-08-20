@@ -105,11 +105,15 @@ if [ "$create_git" = true ]; then
   git init
 fi
 
+git add .
+
+direnv allow
+
 echo
 gum style \
   --bold \
   "Ambiente criado!"
 
 echo
-echo "Próximo passo:"
-echo "  direnv allow"
+
+
