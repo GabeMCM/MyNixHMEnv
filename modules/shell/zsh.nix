@@ -27,7 +27,8 @@
       gl = "git log --oneline --graph --decorate";
 
       ns = "nix search nixpkgs";
-
+      hmconfig = "cd ~/.config/nix-config";
+      
       buildnix = "nix build .#homeConfigurations.main.activationPackage";
       activenix = "./result/activate && exec zsh";
       buildactivenix = "nix build .#homeConfigurations.main.activationPackage && ./result/activate && exec zsh";

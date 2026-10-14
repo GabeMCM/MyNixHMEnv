@@ -7,6 +7,7 @@
     ./modules/shell/tools.nix
 
     ./modules/geral/git.nix
+    ./modules/geral/agy-cli.nix
 	  ./modules/geral/direnv.nix
     ./modules/geral/vscode.nix
 	  ./modules/geral/pkgs.nix
