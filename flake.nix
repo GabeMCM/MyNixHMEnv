@@ -13,7 +13,7 @@
   outputs = { nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
-      username = "caspgestec";
+      username = "capgestec";
       homeDirectory = "/home/${username}";
 
       pkgs = import nixpkgs {
@@ -23,19 +23,22 @@
           allowUnfree = true;
         };
       };
+      mkHome = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        extraSpecialArgs = {
+          inherit username homeDirectory;
+        };
+
+        modules = [
+          ./home.nix
+        ];
+      };
     in
     {
-      homeConfigurations.main =
-        home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          extraSpecialArgs = {
-            inherit username homeDirectory;
-          };
-
-          modules = [
-            ./home.nix
-          ];
-        };
+      homeConfigurations = {
+        main = mkHome;
+        ${username} = mkHome;
+      };
     };
 }

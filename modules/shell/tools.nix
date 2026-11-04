@@ -19,9 +19,15 @@
     enableZshIntegration = true;
   };
 
+  programs.yazi = {
+    enable = true;
+    enableZshIntegration = true;
+    shellWrapperName = "y";
+  };
+
   home.packages = with pkgs; [
     ripgrep
-		micro
+    micro
   ];
 
   programs.zsh.shellAliases = {

@@ -27,13 +27,15 @@
       gl = "git log --oneline --graph --decorate";
 
       ns = "nix search nixpkgs";
-      hmconfig = "cd ~/.config/nix-config";
-      
+      hmconfig = "cd ~/.config/home-manager";
+
       buildnix = "nix build .#homeConfigurations.main.activationPackage";
       activenix = "./result/activate && exec zsh";
       buildactivenix = "nix build .#homeConfigurations.main.activationPackage && ./result/activate && exec zsh";
-      hm = "home-manager switch --flake ~/.config/nix-config#main && exec zsh";
-      hmbackup = "home-manager switch -b backup --flake ~/.config/nix-config#main && exec zsh";
+      hm = "home-manager switch --flake ~/.config/home-manager#main && exec zsh";
+      hmbackup = "home-manager switch -b backup --flake ~/.config/home-manager#main && exec zsh";
+      hmup = "nix flake update --flake ~/.config/home-manager && home-manager switch --flake ~/.config/home-manager#main && exec zsh";
+      hmgc = "nix-collect-garbage -d";
     };
 
     autosuggestion.enable = true;
@@ -42,8 +44,6 @@
     initContent = ''
       setopt HIST_REDUCE_BLANKS
       setopt AUTO_CD
-
-      export PATH="$HOME/.cargo/bin:$PATH"
 
       gsave() {
         if [ -z "$1" ]; then

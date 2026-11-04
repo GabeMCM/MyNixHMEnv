@@ -8,10 +8,8 @@
 
     ./modules/geral/git.nix
     ./modules/geral/agy-cli.nix
-	  ./modules/geral/direnv.nix
-    ./modules/geral/vscode.nix
-	  ./modules/geral/pkgs.nix
-    ./modules/geral/gh.nix
+    ./modules/geral/direnv.nix
+    ./modules/geral/pkgs.nix
 
     ./modules/dev-init.nix
   ];
@@ -21,10 +19,11 @@
 
   home.sessionPath = [
     "$HOME/.local/bin"
+    "$HOME/.cargo/bin"
   ];
 
+  programs.home-manager.enable = true;
   targets.genericLinux.enable = true;
 
   home.stateVersion = "25.05";
-  
 }
