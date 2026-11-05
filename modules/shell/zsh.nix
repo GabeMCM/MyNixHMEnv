@@ -30,7 +30,7 @@
       hmconfig = "cd ~/.config/home-manager";
       zshconfig = "micro ~/.config/home-manager/modules/shell/zsh.nix";
 
-      gh alias set iclone "!gh repo list --limit 100 --json nameWithOwner --jq '.[].nameWithOwner' | fzf | xargs -I {} gh repo clone {}";
+      ghclone = "gh repo list --limit 100 --json nameWithOwner --jq '.[].nameWithOwner' | fzf | xargs -I {} gh repo clone {}";
 	  
       buildnix = "nix build .#homeConfigurations.main.activationPackage";
       activenix = "./result/activate && exec zsh";
