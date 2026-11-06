@@ -39,6 +39,9 @@
       hmbackup = "home-manager switch -b backup --flake ~/.config/home-manager#main && exec zsh";
       hmup = "nix flake update --flake ~/.config/home-manager && home-manager switch --flake ~/.config/home-manager#main && exec zsh";
       hmgc = "nix-collect-garbage -d";
+
+      apti = "aptin";
+      aptfzf = "aptin";
     };
 
     autosuggestion.enable = true;
@@ -57,6 +60,27 @@
         git add .
         git commit -m "$*"
         git push
+      }
+
+      aptin() {
+        if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+          echo "Uso: aptin [termo]"
+          echo "  Pesquisa pacotes APT com fzf (seleção múltipla com Tab) e instala via sudo apt install."
+          return 0
+        fi
+
+        local query="$*"
+        local pkgs
+        pkgs=$(apt-cache search "$query" | fzf -m \
+          --prompt="📦 Pacotes APT > " \
+          --header="[Tab: marca/desmarca | Enter: instala | Esc: cancela]" \
+          --preview 'apt-cache policy {1} && echo "---" && apt-cache show {1}' \
+          --preview-window=right:60%:wrap | awk '{print $1}')
+
+        if [ -n "$pkgs" ]; then
+          echo "📦 Instalando: $(echo $pkgs | tr '\n' ' ')"
+          sudo apt install $(echo $pkgs)
+        fi
       }
     '';
   };
